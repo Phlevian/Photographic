@@ -30,14 +30,17 @@
         <a href="#contact">Contact</a>
       </nav>
     </div>
+    <div class="menu-toggle" id="menuToggle">
+  ☰
+</div>
   </header>
 
   <section class="hero-section" data-aos="fade-up">
 
   <div class="hero-content">
     <div class="text-content">
-      <h2>Hi, I'm KB_CREATION</h2>
-      <p>
+      <h2>Hi, I'm <strong>KB_CREATION</strong></h2>
+<h2>I am a <span class="typed-text"></span><span class="cursor">|</span></h2>
     We offer a full range of creative services including 
     <strong>photography</strong>, 
     <strong>videography</strong>, 
@@ -135,7 +138,6 @@
         <p>High-quality printing solutions business cards, posters, banners, and more.</p>
       </div>
 </section>
-
 <section id="portfolio" class="portfolio-section" data-aos="fade-up">
   <div class="container">
     <h2>My Portfolio</h2>
@@ -244,50 +246,34 @@
   </video>
 </div>
 </section>
-<section id="stats" class="stats-section">
-  <div class="stats-container">
-    <div class="stat-box">
-      <h3><span class="counter" data-target="2">0</span>+</h3>
-      <p>Years of Experience</p>
-    </div>
-    <div class="stat-box">
-      <h3><span class="counter" data-target="30">0</span>+</h3>
-      <p>Projects Completed</p>
-    </div>
-    <div class="stat-box">
-      <h3><span class="counter" data-target="100">0</span>+</h3>
-      <p>Happy Clients</p>
-    </div>
-    <div class="stat-box">
-      <h3><span class="counter" data-target="10">0</span>+</h3>
-      <p>Brands worked with</p>
-    </div>
-  </div>
-</section>
+<section id="testimonials" class="testimonials-section" data-aos="fade-up">
+  <div class="container">
+    <h2 class="section-title">Client Testimonials</h2>
+    <div class="testimonial-carousel">
 
+      <div class="testimonial-item">
+        <img src="images/5.jpg" alt="Tamu Bakers" />
+        <p class="testimonial-text">“KB_Creation brought our brand to life. The quality and creativity were top-notch!”</p>
+        <div class="rating">★★★★★</div>
+      </div>
 
-<section class="brands-section" id="brands">
-  <h2>Brands I've Worked With</h2>
-  <div class="brands-grid">
-    <div class="brand-card">
-      <img src="images/1.jpg" alt="Nanuma Trading limited" />
-      <div class="brand-name">Nanuma Trading Limited</div>
-       <div class="brand-testimonial">"Matthias brought our vision to life through excellent video storytelling. Highly recommended!"</div>
-    </div>
-    <div class="brand-card">
-          <img src="images/Photo04.jpg" alt="Highland Rhino Eldoret" />
-      <div class="brand-name">Highland Rhino Eldoret</div>
-       <div class="brand-testimonial">"His creativity and attention to detail made our campaign stand out globally."</div>
-    </div>
-    <div class="brand-card">
-      <img src="images/Photo02.jpg" alt="Wia Beauty salon and Spa" />
-      <div class="brand-name">Wia Beauty salon and Spa</div>
-      <div class="brand-testimonial">"A true professional timely delivery, outstanding editing, and innovative graphics."</div>
-    </div>
-    <div class="brand-card">
-       <img src="images/5.jpg" alt="Tamu bakers" />
-      <div class="brand-name">Tamu bakers</div>
-      <div class="brand-testimonial">"Excellent communication and flawless visual results. We’ll definitely collaborate again."</div>
+      <div class="testimonial-item">
+        <img src="images/Photo02.jpg" alt="Wia Beauty salon and Spa" />
+        <p class="testimonial-text">“Their video production exceeded expectations. Highly recommend their services!”</p>
+        <div class="rating">★★★★★</div>
+      </div>
+      <div class="testimonial-item">
+         <img src="images/Photo04.jpg" alt="Highland Rhino Eldoret" />
+        <p class="testimonial-text">“His creativity and attention to detail made our campaign stand out globally.”</p>
+        <div class="rating">★★★★★</div>
+      </div>
+
+      <div class="testimonial-item">
+        <img src="images/1.jpg" alt="Nanuma Trading limited" />
+        <p class="testimonial-text">“Truly professional and easy to work with. The design work is clean and powerful.”</p>
+        <div class="rating">★★★★★</div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -421,6 +407,51 @@ counters.forEach(counter => {
     } else {
       navbar.classList.remove("scrolled");
     }
+  });
+</script>
+<script>
+  const menuToggle = document.getElementById("menuToggle");
+  const navLinks = document.querySelector(".nav-links");
+
+  menuToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("show");
+  });
+</script>
+<script>
+  const typedTextSpan = document.querySelector(".typed-text");
+  const cursorSpan = document.querySelector(".cursor");
+
+  const textArray = ["Photographer", "Videographer", "Graphic Designer", "Branding Expert", "Print Specialist"];
+  const typingDelay = 100;
+  const erasingDelay = 60;
+  const newTextDelay = 1500;
+  let textArrayIndex = 0;
+  let charIndex = 0;
+
+  function type() {
+    if (charIndex < textArray[textArrayIndex].length) {
+      typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+      charIndex++;
+      setTimeout(type, typingDelay);
+    } else {
+      setTimeout(erase, newTextDelay);
+    }
+  }
+
+  function erase() {
+    if (charIndex > 0) {
+      typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
+      charIndex--;
+      setTimeout(erase, erasingDelay);
+    } else {
+      textArrayIndex++;
+      if (textArrayIndex >= textArray.length) textArrayIndex = 0;
+      setTimeout(type, typingDelay + 500);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    if (textArray.length) setTimeout(type, newTextDelay + 250);
   });
 </script>
 
