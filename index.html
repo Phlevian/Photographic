@@ -10,13 +10,19 @@
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 />
-
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <header class="navbar">
     <div class="container">
-      <h1 class="logo">Matthias.</h1>
+      <h1 class="logo">Mathias.</h1>
       <nav class="nav-links">
         <a href="#home">Home</a>
         <a href="#about">About</a>
@@ -26,7 +32,8 @@
     </div>
   </header>
 
-  <section class="hero-section">
+  <section class="hero-section" data-aos="fade-up">
+
   <div class="hero-content">
     <div class="text-content">
       <h2>Hi, I'm KB_CREATION</h2>
@@ -49,7 +56,7 @@
     </div>
   </div>
 </section>
-<section id="about">
+<section id="about" data-aos="fade-up">
   <div class="about-container">
     <div class="about-text">
       <h2>About Me</h2>
@@ -91,7 +98,7 @@
     </div>
   </div>
 </section>
-<section id="services">
+<section id="services" data-aos="fade-right">
   <div class="services-container">
     <h2 class="section-title">My Services</h2>
     <div class="services-grid">
@@ -129,7 +136,7 @@
       </div>
 </section>
 
-<section id="portfolio" class="portfolio-section">
+<section id="portfolio" class="portfolio-section" data-aos="fade-up">
   <div class="container">
     <h2>My Portfolio</h2>
     <div class="portfolio-buttons">
@@ -174,8 +181,22 @@
       </div>
 
       <div class="portfolio-item" data-category="videography">
-        <img src="images/video1.jpg" alt="Videography Thumbnail">
-      </div>
+  <div class="video-wrapper">
+    <video controls muted playsinline>
+      <source src="videos/V3.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <p class="video-caption">Behind the Scenes - Short Film</p>
+  </div>
+
+  <div class="video-wrapper">
+    <video controls muted playsinline>
+      <source src="videos/V4.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <p class="video-caption">Event Highlights - Wedding Shoot</p>
+  </div>
+</div>
 
       <div class="portfolio-item design-branding">
     <img src="images/Photo01.jpg" alt="Graphic design">
@@ -223,29 +244,27 @@
   </video>
 </div>
 </section>
-<section class="stats-section" id="stats">
-  <div class="container">
-    <h2 class="section-title">Achievements</h2>
-    <div class="stats-grid">
-      <div class="stat-card">
-        <h3 class="stat-number" data-target="30">0</h3>
-        <p class="stat-label">Projects Completed</p>
-      </div>
-      <div class="stat-card">
-        <h3 class="stat-number" data-target="2">0</h3>
-        <p class="stat-label">Years of Experience</p>
-      </div>
-      <div class="stat-card">
-        <h3 class="stat-number" data-target="100">0</h3>
-        <p class="stat-label">Happy Clients</p>
-      </div>
-      <div class="stat-card">
-        <h3 class="stat-number" data-target="10">0</h3>
-        <p class="stat-label">Brands Worked With</p>
-      </div>
+<section id="stats" class="stats-section">
+  <div class="stats-container">
+    <div class="stat-box">
+      <h3><span class="counter" data-target="2">0</span>+</h3>
+      <p>Years of Experience</p>
+    </div>
+    <div class="stat-box">
+      <h3><span class="counter" data-target="30">0</span>+</h3>
+      <p>Projects Completed</p>
+    </div>
+    <div class="stat-box">
+      <h3><span class="counter" data-target="100">0</span>+</h3>
+      <p>Happy Clients</p>
+    </div>
+    <div class="stat-box">
+      <h3><span class="counter" data-target="10">0</span>+</h3>
+      <p>Brands worked with</p>
     </div>
   </div>
 </section>
+
 
 <section class="brands-section" id="brands">
   <h2>Brands I've Worked With</h2>
@@ -345,36 +364,64 @@
 });
 
 </script>
-
 <script>
-  const counters = document.querySelectorAll(".stat-number");
-  let hasCounted = false;
+const counters = document.querySelectorAll('.counter');
 
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !hasCounted) {
-        hasCounted = true;
-        counters.forEach(counter => {
-          const updateCount = () => {
-            const target = +counter.getAttribute("data-target");
-            const current = +counter.innerText;
-            const increment = target / 100;
+counters.forEach(counter => {
+  const updateCount = () => {
+    const target = +counter.getAttribute('data-target');
+    const speed = 200; 
+    const count = +counter.innerText;
 
-            if (current < target) {
-              counter.innerText = Math.ceil(current + increment);
-              setTimeout(updateCount, 20);
-            } else {
-              counter.innerText = target;
-            }
-          };
-          updateCount();
-        });
-        observer.disconnect();
-      }
+    const increment = Math.ceil(target / speed);
+
+    if (count < target) {
+      counter.innerText = count + increment;
+      setTimeout(updateCount, 30);
+    } else {
+      counter.innerText = target;
+    }
+  };
+
+  updateCount();
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 800,  
+    once: true       
+  });
+</script>
+<button id="backToTopBtn" title="Go to top">↑</button>
+<script>
+  const backToTopBtn = document.getElementById("backToTopBtn");
+
+  window.onscroll = function () {
+    if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+      backToTopBtn.style.display = "block";
+    } else {
+      backToTopBtn.style.display = "none";
+    }
+  };
+
+  backToTopBtn.addEventListener("click", function () {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
     });
-  }, { threshold: 0.5 });
-
-  observer.observe(document.querySelector("#stats"));
+  });
+</script>
+<script>
+  window.addEventListener("scroll", function () {
+    const navbar = document.querySelector(".navbar");
+    if (window.scrollY > 100) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
+  });
 </script>
 
 
